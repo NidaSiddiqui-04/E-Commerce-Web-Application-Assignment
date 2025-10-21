@@ -1,0 +1,46 @@
+{%extends 'shop/base.html'%}
+{% block content%}
+    
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-6 ">
+            <div class="row" >
+                <div class="col-md-12 align-middle" >
+                    <img src="{{product.image}}" style="width: 500px; height: 500px;" class="img-fluid">
+                </div>
+            </div>
+               
+        </div>
+        <div class="col-6">
+            <div class="row pt-5">
+                <div class="col-md-12">
+                    <h1>{{product.name}}</h1>
+                    <h2 style="color: green;">Rs. {{product.price}}</h2>
+                     <h3>{{product.description}}</h3>
+
+                    {%if 5 >= product.stock_quantity and product.stock_quantity != 0%}
+                         <p style="color: red;">In stock: only {{product.stock_quantity}} left!</p>
+                         <a class="nav-link" href="{%url 'cart:add_to_cart' product.id%}"  style="background-color: bisque;text-align: center;">Add to cart</a>
+                    {%elif product.stock_quantity == 0%}
+                           <p style="color: red;">Out of stock</p>
+                           <a class="nav-link" style="background-color: darkgray;text-align: center;color: cornsilk;">Add to cart</a>
+                    {% elif product.stock_quantity > 5 %} 
+            
+                           <a class="nav-link " href="{%url 'cart:add_to_cart' product.pk %}" style="background-color: bisque;text-align: center;">Add to cart</a>
+                    
+                    {%endif%}
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ {%endblock%}
+
+
+
+
+
+
+ 
