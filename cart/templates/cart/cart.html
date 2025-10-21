@@ -1,0 +1,56 @@
+{%extends 'shop/base.html'%}
+{% block content%}
+<div class="container mt-5">
+    <div class="row">
+        <h3>Cart Item</h3>
+        {%for item in cart_items%}
+        <span class="border border-black">
+
+        <div class="col-12">
+           <div class="row">
+            <div class="col-lg-4 col-12 ps-5">
+                <img src="{{item.product.image}}">
+            </div>
+            <div class="col-lg-5 col-12 my-4">
+                
+                <h5>{{item.product}}</h5>
+                  <h6 style="color: green;">₹ {{item.product.price}}
+                 </h6>
+                 <div class="row">
+                    <div class="col-1"><a class="btn btn-secondary" href="{%url 'cart:removeitem' item.product.pk %}">-</a></div>
+                    <div class="col-1 ms-3">{{item.quantity}}</div>
+                    <div class="col-1">
+                        <a href="{%url 'cart:add_to_cart' item.product.pk %}" class="btn btn-secondary">+</a>
+
+                    </div>
+                 </div>
+                 <a class="nav-link ps-0" href="{%url 'cart:remove' item.product.pk%}" style="color: red;">Remove</a>
+            </div>
+           </div>
+        </div>
+        </span>
+        {%endfor%}
+    
+    </div>
+    <div class="row text-end">
+        <div class="col-12"  style="font-size: x-large; font-weight: 700;">
+         Order Total:   ₹ {{total}}
+        </div>
+    </div>
+    {%if cart_%}
+    {%for cart in cart_ %}
+    <div class="row text-center my-5">
+        <div class="col-12">
+         <a class="nav-link btn btn-warning" href="{%url 'cart:checkout' cart.id %}"> Proceed to buy </a>
+        </div>
+    </div>
+    {%endfor%}
+    {%else%}
+    <div class="row text-center my-5">
+        <div class="col-12">
+            <a href="{%url 'accounts:login'%}" class="nav-link btn btn-warning">Proceed to buy</a>
+        </div>
+    </div>
+    {%endif%}
+</div>
+  {%endblock%}
