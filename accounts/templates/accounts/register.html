@@ -1,0 +1,67 @@
+{%extends 'shop/base.html'%}
+{% block content%}
+<section class="container-fluid">
+<div class="container mt-4 ">
+ 
+    <div class="row row-cols-1  mx-auto "style="width: 20rem;">
+        <div class="shadow-lg p-3 mb-5 bg-body rounded">
+
+        <h3 class="text-center">Register</h3>
+        <div class="col">
+            
+             <form method="post">
+    {% csrf_token%}
+        
+ {% if form.errors %}
+
+    
+      {% for err,error in form.errors.items %}
+      <ul style="background-color: crimson;">
+      {%for error_list in error%}
+        <li >{{ error_list }}</li>
+        {%endfor%}
+    </ul>
+      {% endfor %}
+    
+
+  {% endif %}
+
+    <div class="mb-3 mt-5">
+    <label for="id_first_name" class="form-label">First Name</label></br>
+     <input type="text" name="first_name" style="width: 18rem;"  id="id_first_name" required>
+    </div>
+    <div class="mb-3">
+    <label for="id_last_name" class="form-label">Last Name</label></br>
+     <input type="text" name="last_name" style="width: 18rem;" id="id_last_name" required>
+    </div>
+    <div class="mb-3">
+    <label for="id_email" class="form-label">Email</label></br>
+    <input type="email" name="email"  style="width: 18rem;" id="id_email" required >
+    </div>
+    <div class="mb-3">
+    <label for="id_phone_number" class="form-label">Phone Number</label></br>
+     <input type="text" name="phone_number" style="width: 18rem;"  id="id_phone_number" required>
+    </div>
+    <div class="mb-3">
+    <label for="id_password1" class="form-label">Password</label></br>
+     <input type="password" name="password1" style="width: 18rem;" aria-describedby="id_password1_helptext" id="id_password1" required>
+    </div>
+    <div class="mb-3">
+    <label for="id_password2" class="form-label">Confirm Password</label></br>
+     <input type="password" name="password2" style="width: 18rem;" aria-describedby="id_password2_helptext" id="id_password2" required>
+    </div>
+    <div class="mb-3">
+    <button type="submit" style="width: 100%;">register</button>
+    </div>
+   </form> 
+     
+        </div>
+    </div>
+    </div>
+</div>
+</section>
+
+ 
+ 
+ 
+{%endblock%}

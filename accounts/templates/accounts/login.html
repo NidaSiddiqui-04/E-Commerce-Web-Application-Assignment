@@ -1,0 +1,46 @@
+{%extends 'shop/base.html'%}
+{%block content%}
+<section class="container-fluid">
+    <div class="container mt-5">
+        <div class="row text-end">
+            <div class="col-12">
+                <a href="{%url 'shop:dashboard'%}" class="btn btn-secondary">Skip for Now</a>
+            </div>
+        </div>
+        <div class="row row-cols-1 mx-auto" style="width: 20rem;">
+            <div class="shadow-lg p-3 mb-5 bg-body rounded">
+           <h3 class="text-center">Login</h3>
+            <div class="col">
+               <form  method="post">
+                {%csrf_token%}
+                <ul style="background-color:crimson ;">
+                 {% for error_list in form.non_field_errors%}
+           
+               <li >{{error_list}}</li>
+          
+      {%endfor%}
+                </ul>
+                <div class="mb-3 mt-5 ">
+                    <label for="id_username" class="ps-0">Phone Number</label></br>
+                    
+                    
+                   <input type="text" name="username"  style="width: 18rem;" id="id_username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="id_password" class="ps-0">Password</label></br>
+                
+                    <input type="password" name="password" style="width: 18rem;" id="id_password">
+                </div>
+                <div class="mb-3">
+                <button type="submit" style="width: 100%;">login</button>
+                </div>
+                 
+                </div>
+               </form>
+            </div> 
+            </div>
+        </div>
+    </div>
+</section>
+ 
+{%endblock%}
